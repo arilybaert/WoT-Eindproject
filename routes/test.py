@@ -22,15 +22,16 @@ config = {
   'raise_on_warnings': bool(RAISE_ON_WARNINGS)
 }
 
-cnx = mysql.connector.connect(**config)
-cursor = cnx.cursor()
+# OPEN db connection
+db = mysql.connector.connect(**config)
+cursor = db.cursor()
 
-# Get all rows
+# SELECT queries
 all_students = ("SELECT * FROM Students")
 all_classrooms = ("SELECT * FROM Classrooms")
 all_scans = ("SELECT c_s.scan, c_s.date,s.firstname, s.lastname,c.title FROM Classrooms_Students as c_s INNER JOIN Students as s on c_s.Student_id = s.id INNER JOIN Classrooms as c on c_s.Classroom_id = c.id")
 
-# Write new scans to db
+# INSERT query
 new_scan = ("INSERT INTO Classrooms_Students (date, scan, Classroom_id, Student_id) VALUES (%s,%s,%s,%s)")
 val = ("2020-12-12", "23:23:23", "2", "3")
 
@@ -43,7 +44,7 @@ def get_data(query):
 
 def write_data(query, values):
   cursor.execute(new_scan, val)
-  cnx.commit()
+  db.commit()
 
 # get_data(all_students)
 write_data(new_scan, val)
@@ -51,4 +52,4 @@ write_data(new_scan, val)
 
 
 
-cnx.close()
+db.close()
