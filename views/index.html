@@ -1,8 +1,0 @@
-{% for entry in entries %}
-  <li>
-    <h2>{{ entry.title }}</h2>
-    <div>{{ entry.text|safe }}</div>
-  </li>
-{% else %}
-  <li><em>No entries yet. Add some!</em></li>
-{% endfor %}

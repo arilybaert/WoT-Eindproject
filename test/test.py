@@ -33,7 +33,7 @@ all_scans = ("SELECT c_s.scan, c_s.date,s.firstname, s.lastname,c.title FROM Cla
 
 # INSERT query
 new_scan = ("INSERT INTO Classrooms_Students (date, scan, Classroom_id, Student_id) VALUES (%s,%s,%s,%s)")
-val = ("2020-12-12", "23:23:23", "2", "3")
+val = ("2021-12-12", "23:23:23", "2", "3")
 
 
 
