@@ -35,12 +35,19 @@ class DB(object):
 
 
     def get_data(self, query, value):
+        try:
+            self.cursor.execute(query, value)
+            print(self.cursor)
+            for (item) in self.cursor:
 
-        self.cursor.execute(query, value)
-        for (item) in self.cursor:
-            # print(item[0]) # print proper classroom title
-            return item[0]
-
+                print(item[0]) # print proper classroom title
+                if str(item[0]) == "None":
+                    return "Classroom is wrong or doesn't exist. Use this notation: B20"
+                else:
+                    print("hey")
+                    return "inttt: " + item[0]
+        except:
+            return "Oh oh, something went wrong"
 
     def write_data(self, query, values):
 
@@ -72,9 +79,12 @@ class DB(object):
         # query
         put_students_query = ("INSERT INTO Classrooms_Students (scan_date, scan_time, Classroom_id, Student_id) VALUES (%s,%s,%s,%s)")
         put_students_value = (current_date, current_time, classroom_id, student_id)
+        try:
+            self.cursor.execute(put_students_query, put_students_value)
+            self.db.commit()
+        except:
+            return "Oh oh, something went wrong"
 
-        self.cursor.execute(put_students_query, put_students_value)
-        self.db.commit()
 
     def close_connection(self):
         self.db.close()

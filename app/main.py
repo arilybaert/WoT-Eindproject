@@ -14,8 +14,11 @@ current_date = today.strftime("%Y-%m-%d")
 
 print("What classroom is this?")
 classroom = raw_input("")
+input = db.get_data(("SELECT title FROM Classrooms WHERE title = %s"), ((str(classroom.decode('unicode_escape').encode('ascii', 'utf-8')), )))
 
-while (True):
+print("input: " + str(input))
+
+while (False):
 
     # query FIND CLASSROOM
     find_class_query = ("SELECT id FROM Classrooms WHERE title = %s")
