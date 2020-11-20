@@ -13,10 +13,19 @@ current_date = today.strftime("%Y-%m-%d")
 
 
 print("What classroom is this?")
+
+# handle client input and db query
 classroom = raw_input("")
 input = db.get_data(("SELECT title FROM Classrooms WHERE title = %s"), ((str(classroom.decode('unicode_escape').encode('ascii', 'utf-8')), )))
 
-print("input: " + str(input))
+# check input and validate it
+if str(input) == "None":
+    print("Classroom: " + classroom + " is wrong or doesn't exist. Use this notation for example: B20")
+else:
+    print("Classroom: " + classroom + " is set!")
+
+
+
 
 while (False):
 

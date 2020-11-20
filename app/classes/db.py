@@ -37,15 +37,9 @@ class DB(object):
     def get_data(self, query, value):
         try:
             self.cursor.execute(query, value)
-            print(self.cursor)
-            for (item) in self.cursor:
 
-                print(item[0]) # print proper classroom title
-                if str(item[0]) == "None":
-                    return "Classroom is wrong or doesn't exist. Use this notation: B20"
-                else:
-                    print("hey")
-                    return "inttt: " + item[0]
+            for (item) in self.cursor:
+                    return item[0]
         except:
             return "Oh oh, something went wrong"
 
