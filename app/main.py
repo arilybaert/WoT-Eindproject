@@ -73,7 +73,8 @@ if datastore["exam_mode"] == "1":
 
 
 def text_callback(text):
-    student_id = "eVunVfMWaa"
+    db = DB()
+    student_id = text.replace(" ", "")
     print("classroom " + classroom)
     print("student ID " + student_id)
 
@@ -91,7 +92,7 @@ def text_callback(text):
     print(db.get_data(find_class_query, find_class_value))
     print(student_id)
     
-    #db.write_data(put_students_query, put_students_value)
+    db.write_data(put_students_query, put_students_value)
     
     # try:
     #     db.write_data(put_students_query, put_students_value)
