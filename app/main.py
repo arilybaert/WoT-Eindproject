@@ -21,11 +21,11 @@ pn7150 = PN7150()
 
 filename = "/home/pi/Desktop/config.txt"
 
-
+exam = 0
 
 
 #
-# Read the config.txt file that is dsave on the desktop to retreive all the variables
+# Read the config.txt file that is saved on the desktop to retreive all the variables
 #
 
 # Load txt file
@@ -67,8 +67,10 @@ else:
 
 if datastore["exam_mode"] == "0":
     print("exam mode is off")
+    exam = 0
 if datastore["exam_mode"] == "1":
     print("exam mode is on")
+    exam = 1
 
 
 
@@ -83,9 +85,9 @@ def text_callback(text):
     find_class_value =((str(classroom.decode('unicode_escape').encode('ascii', 'utf-8')), ))
 
     # query WRITE NEW SCAN
-    put_students_query = ("INSERT INTO classrooms__students (scan_date, scan_time, Classroom_id, Student_id) VALUES (%s,%s,%s,%s)")
+    put_students_query = ("INSERT INTO classrooms__students (scan_date, scan_time, classroom_id, student_id, exam) VALUES (%s,%s,%s,%s,%s)")
 
-    put_students_value = (current_date, current_time, db.get_data(find_class_query, find_class_value), student_id)
+    put_students_value = (current_date, current_time, db.get_data(find_class_query, find_class_value), student_id, exam)
     
     print(current_date)
     print(current_time)
